@@ -1,0 +1,36 @@
+input, button {
+    color: rgb(62, 209, 62);
+    background-color: aqua;
+    border-color: yellow;
+    border-width: 5px
+}
+
+button {
+
+    border-color: rgb(111, 111, 250);
+    border-width: 3px
+
+}
+
+#boton2 {
+
+    background-color: red;
+    border-width: 5px
+
+}
+
+.cajaseleccion {
+
+    border-style: dotted;
+    border-color: coral;
+    border-width: 3px;
+    background-color: aquamarine
+
+}
+
+.my-btn-danger {
+
+    background-color: rgb(253, 130, 130);
+    border-width: 5px;
+
+}
