@@ -27,7 +27,7 @@ public class PersonService {
 		return null;
 	}
 
-	public PersonModel fetchById(int id) {
+	public PersonModel findById(int id) {
 
 		try {
 			return this.personDAO.fetchById(id);
