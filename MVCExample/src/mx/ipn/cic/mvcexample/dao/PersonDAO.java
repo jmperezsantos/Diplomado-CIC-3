@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,18 +28,19 @@ public class PersonDAO {
 
 		List<PersonModel> persons = new ArrayList<>();
 
-		PreparedStatement statement = null;
+		Statement statement = null;
 
 		Connection connection = null;
+
 		try {
 
 			connection = this.getDBConnection();
 
 			String SQL = "SELECT * FROM person";
 
-			statement = connection.prepareStatement(SQL);
+			statement = connection.createStatement();
 
-			ResultSet rs = statement.executeQuery();
+			ResultSet rs = statement.executeQuery(SQL);
 
 			while (rs.next()) {
 
@@ -46,9 +48,12 @@ public class PersonDAO {
 				String lastname = rs.getString("lastname");
 				int age = rs.getInt("age");
 
-				PersonModel person = new PersonModel(name, lastname, "", age);
+				int id = rs.getInt("id");
+
+				PersonModel person = new PersonModel(id, name, lastname, "", age);
 
 				persons.add(person);
+
 			}
 
 		} catch (SQLException e) {
@@ -71,29 +76,76 @@ public class PersonDAO {
 
 	}
 
-	public PersonModel fetchById(int id) {
+	public PersonModel fetchById(int id) throws SQLException {
 
-		return null;
+		PersonModel person = null;
+
+		PreparedStatement statement = null;
+
+		Connection connection = null;
+
+		try {
+
+			connection = this.getDBConnection();
+
+			String SQL = "SELECT * FROM person WHERE id = ?";
+
+			statement = connection.prepareStatement(SQL);
+
+			statement.setInt(1, id);
+
+			ResultSet rs = statement.executeQuery();
+
+			while (rs.next()) {
+
+				String name = rs.getString("name");
+				String lastname = rs.getString("lastname");
+				int age = rs.getInt("age");
+
+				// int id = rs.getInt("id");
+
+				person = new PersonModel(id, name, lastname, "", age);
+
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			if (statement != null) {
+				statement.close();
+			}
+
+			if (connection != null) {
+				connection.close();
+			}
+
+		}
+
+		return person;
+
 	}
 
 	public PersonModel create(PersonModel person) throws SQLException {
 
 		PreparedStatement statement = null;
-
 		Connection connection = null;
+		
 		try {
 
 			connection = this.getDBConnection();
 
-			String SQL = "INSERT INTO person (name, lastname, age) values (?, ?, ?)";
+			String insert = "INSERT INTO person (name, lastname, age) values (?, ?, ?)";
 
-			statement = connection.prepareStatement(SQL);
+			statement = connection.prepareStatement(insert);
 
 			statement.setString(1, person.getName());
 			statement.setString(2, person.getLastname());
 			statement.setInt(3, person.getAge());
 
-			statement.executeUpdate();
+			int result = statement.executeUpdate();
 
 		} catch (SQLException e) {
 
@@ -206,7 +258,10 @@ public class PersonDAO {
 
 		try {
 
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/midb", "root", "password");
+			connection = DriverManager
+					.getConnection("jdbc:mysql://127.0.0.1:3306/mydatabase?serverTimezone=America/Mexico_City",
+							"root", 
+							"Password123");
 
 		} catch (SQLException e) {
 
@@ -221,7 +276,7 @@ public class PersonDAO {
 
 		} else {
 
-			System.out.println("Failed to make connection!");
+			System.out.println("No lo logramos, :'( ");
 
 		}
 

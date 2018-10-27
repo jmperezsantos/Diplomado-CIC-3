@@ -38,13 +38,21 @@ public class PersonQueryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// TODO Consumir el servicio y contestar un jsp que muestre
+		// Consumir el servicio y contestar un jsp que muestre
 		// Una tabla con todos los usuarios
 
 		List<PersonModel> findAll = this.personService.findAll();
 
 		request.setAttribute("lista", findAll);
+		
+		request.getRequestDispatcher("allPeople.jsp").forward(request, response);
 
 	}
 
 }
+
+
+
+
+
+

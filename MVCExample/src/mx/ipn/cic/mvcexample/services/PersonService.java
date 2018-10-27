@@ -21,7 +21,6 @@ public class PersonService {
 		try {
 			return this.personDAO.fetchAll();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -30,7 +29,13 @@ public class PersonService {
 
 	public PersonModel fetchById(int id) {
 
-		return this.personDAO.fetchById(id);
+		try {
+			return this.personDAO.fetchById(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 
 	}
 
@@ -39,7 +44,7 @@ public class PersonService {
 		try {
 			return this.personDAO.create(person);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -51,7 +56,6 @@ public class PersonService {
 		try {
 			return this.personDAO.update(person);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -63,7 +67,6 @@ public class PersonService {
 		try {
 			return this.personDAO.deleteById(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
