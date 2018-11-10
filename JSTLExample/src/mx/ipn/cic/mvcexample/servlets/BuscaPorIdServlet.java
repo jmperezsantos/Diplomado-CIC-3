@@ -42,8 +42,7 @@ public class BuscaPorIdServlet extends HttpServlet {
 
 		request.setAttribute("person", person);
 
-		request.getRequestDispatcher("busquedaPorId.jsp")
-								.forward(request, response);
+		request.getRequestDispatcher("busquedaPorId.jsp").forward(request, response);
 
 	}
 

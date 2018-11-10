@@ -132,7 +132,7 @@ public class PersonDAO {
 
 		PreparedStatement statement = null;
 		Connection connection = null;
-		
+
 		try {
 
 			connection = this.getDBConnection();
@@ -145,7 +145,7 @@ public class PersonDAO {
 			statement.setString(2, person.getLastname());
 			statement.setInt(3, person.getAge());
 
-			int result = statement.executeUpdate();
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 
@@ -258,10 +258,8 @@ public class PersonDAO {
 
 		try {
 
-			connection = DriverManager
-					.getConnection("jdbc:mysql://127.0.0.1:3306/mydatabase?serverTimezone=America/Mexico_City",
-							"root", 
-							"Password123");
+			connection = DriverManager.getConnection(
+					"jdbc:mysql://127.0.0.1:3306/mydatabase?serverTimezone=America/Mexico_City", "root", "Password123");
 
 		} catch (SQLException e) {
 

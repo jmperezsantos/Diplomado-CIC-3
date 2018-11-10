@@ -43,7 +43,7 @@ public class PersonQueryServlet extends HttpServlet {
 
 		List<PersonModel> findAll = this.personService.findAll();
 
-		request.setAttribute("lista", findAll);
+		request.setAttribute("people", findAll);
 		
 		request.getRequestDispatcher("allPeople.jsp").forward(request, response);
 
