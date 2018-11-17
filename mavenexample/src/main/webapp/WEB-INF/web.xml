@@ -1,0 +1,43 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>ExampleServlet</servlet-name>
+  	<display-name>ExampleServlet</display-name>
+  	<description></description>
+  	<servlet-class>mx.ipn.cic.mavenexample.ExampleServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>BuscaPorIdServlet</servlet-name>
+  	<display-name>BuscaPorIdServlet</display-name>
+  	<description></description>
+  	<servlet-class>mx.ipn.cic.mavenexample.servlets.BuscaPorIdServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>PersonQueryServlet</servlet-name>
+  	<display-name>PersonQueryServlet</display-name>
+  	<description></description>
+  	<servlet-class>mx.ipn.cic.mavenexample.servlets.PersonQueryServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ExampleServlet</servlet-name>
+  	<url-pattern>/ExampleServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>BuscaPorIdServlet</servlet-name>
+  	<url-pattern>/BuscaPorIdServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>PersonQueryServlet</servlet-name>
+  	<url-pattern>/ListaPersonas</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
